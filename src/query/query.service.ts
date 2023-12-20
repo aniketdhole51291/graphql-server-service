@@ -25,7 +25,6 @@ const repositoriesDetailsQuery = (username: string, repoName: string) => {
         repository(owner: "${username}", name: "${repoName}") {
           url
           visibility
-          }
           file: object(expression: "master:codgen.yml") {
             ... on Blob {
               text
