@@ -7,9 +7,7 @@ const repositoriesQuery = (username: string) => {
             node {
               id
               name
-              url
               diskUsage
-              visibility
               owner {
                 login
               }
@@ -25,13 +23,13 @@ const repositoriesDetailsQuery = (username: string, repoName: string) => {
   return `
     query {
         repository(owner: "${username}", name: "${repoName}") {
-          id
-          name
           url
-          diskUsage
           visibility
-          owner {
-            login
+          }
+          file: object(expression: "master:codgen.yml") {
+            ... on Blob {
+              text
+            }
           }
         }
       }
